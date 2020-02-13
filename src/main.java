@@ -2,21 +2,24 @@ import java.util.*;
 
 
 public class main {
-    public static String admin = "hassan";
-    public static String adminpass = "mansour";
+    public static String admin ;
+    public static String adminpass ;
     public static int number = 0, nbr = 0, userIDP, AccID;
     public static Scanner input = new Scanner(System.in);
     public static account acc[] = new account[100];
     public static vipAccount vpAcc[] = new vipAccount[100];
 
     public static void main(String[] agrs) {
-
-
+// to create admin account
+        System.out.println("enter your admin username");
+        admin=input.next();
+        System.out.println("enter your password");
+        adminpass=input.next();
         int ID = 0;
         login();
 
     }
-
+   // to create vip account from admin panel
     public static void SetVipAccount() {
         System.out.println("enter number of account");
         int nbr1 = input.nextInt();
@@ -52,7 +55,7 @@ public class main {
         nbr = nbr + nbr1;
         System.out.println(nbr + " " + nbr1);
     }
-
+// to create normal account from admin panel
     public static void SetAccount() {
         System.out.println("enter number of account");
         int nbr1 = input.nextInt();
@@ -85,8 +88,9 @@ public class main {
         nbr = nbr + nbr1;
         System.out.println(nbr + " " + nbr1);
     }
-
+// to deposit money to account
     public static void userdeposit() {
+        // to deposit money to normal account
         if (AccID == 2) {
             for (int i = 0; i < number; i++) {
                 if (userIDP == acc[i].GetNumber()) {
@@ -96,7 +100,8 @@ public class main {
 
                 }
             }
-        } else if (AccID == 3) {
+        } // to deposit money to VIP account
+        else if (AccID == 3) {
             for (int i = 0; i < number; i++) {
                 if (userIDP == vpAcc[i].GetNumber()) {
                     System.out.println("enter mount of money for deposit into your bank account");
@@ -109,13 +114,14 @@ public class main {
 
 
     }
-
+// to deposit money from admin panel
     public static void deposit() {
         System.out.println("1. NORMAL ACCOUNT DEPOSIT");
         System.out.println("2. VIP ACCOUNT DEPOSIT");
         System.out.println("3. EXIT");
         System.out.println("eneter number to selcet");
         int IDacc = input.nextInt();
+        // normal account
         if (IDacc == 1) {
 
 
@@ -137,7 +143,9 @@ public class main {
             if (!isAccount) {
                 System.out.println("the number that you entered is unccorect");
             }
-        } else if (IDacc == 2) {
+        }
+        // vip account
+        else if (IDacc == 2) {
             System.out.println("enter number of the account to add deposit to it ");
 
             boolean isAccount = false;
@@ -159,7 +167,7 @@ public class main {
         }
     }
 
-
+   // to withdraw money from vip account
     public static void vpWithDraw() {
 
         for (int i = 0; i < number; i++) {
@@ -175,6 +183,7 @@ public class main {
         }
 
     }
+    // to withdraw from normal account
     public static void userWithDraw() {
 
         for (int i = 0; i < number; i++) {
@@ -190,16 +199,17 @@ public class main {
         }
 
     }
-
+// to withdraw money from admin panel
     public static void withdraw() {
-        int IDacc=0;
+        int IDacc;
+
         do {
             System.out.println("1. NORMAL ACCOUNT DEPOSIT");
             System.out.println("2. VIP ACCOUNT DEPOSIT");
             System.out.println("99. EXIT");
             System.out.println("eneter number to selcet");
              IDacc = input.nextInt();
-
+//withdraw from normal account
             if (IDacc == 1) {
                 boolean isAccount = false;
                 System.out.println("enter number of the account to take out withdraw from  it ");
@@ -221,7 +231,9 @@ public class main {
                 if (!isAccount) {
                     System.out.println("the number that you entered is unccorect");
                 }
-            } else if (IDacc == 2) {
+            }
+            // withdraw from vip account
+            else if (IDacc == 2) {
                 boolean isAccount = false;
                 System.out.println("enter number of the account to take out withdraw from  it ");
 
@@ -246,12 +258,13 @@ public class main {
         } while (IDacc != 99);
 
     }
-
+// to transfer money from admin panel
     public static void TransferMoney() {
         System.out.println("1. RECHERCHE FOR NORMAL ACCOUNT");
         System.out.println("2. RECHRCHE FOR VIP ACCOUNT");
         System.out.println("enter nymber to select");
         int ID=input.nextInt();
+        //transfer from normal account
         if(ID==1) {
             System.out.println("enter account that you want to transfer money from");
 
@@ -280,6 +293,7 @@ public class main {
             if (!isID1 || !isID2)
                 System.out.println("account was not found");
         }
+        // transfer from vip account
         else if(ID==2){
             System.out.println("enter account that you want to transfer money from");
 
@@ -309,10 +323,10 @@ public class main {
                 System.out.println("account was not found");
         }
     }
-
+    //transfer money from user panel
     public static void UsertranserMoney() {
 
-
+   // normal account
         if(AccID==2) {
             boolean isID2 = false;
             for (int i = 0; i < number; i++) {
@@ -338,6 +352,7 @@ public class main {
             if (!isID2)
                 System.out.println("account was not found");
         }
+        // VIP account
         else if(AccID==3)
         {
             boolean isID2 = false;
@@ -366,12 +381,13 @@ public class main {
 
         }
     }
-
+// recherche for account from admin panel
     public static void Recherche() {
         System.out.println("1. RECHERCHE FOR NORMAL ACCOUNT");
         System.out.println("2. RECHRCHE FOR VIP ACCOUNT");
         System.out.println("enter nymber to select");
       int ID1 =input.nextInt();
+      //normal account
        if (ID1==1) {
            System.out.println("enter number to recherche for");
            int ID = input.nextInt();
@@ -381,6 +397,7 @@ public class main {
 
            }
        }
+       //VIP account
        else if (ID1==2) {
            System.out.println("enter number to recherche for");
            int ID = input.nextInt();
@@ -392,7 +409,7 @@ public class main {
 
        }
     }
-
+// to login to account
     public static void login() {
         int ID = 0;
         while (ID != 99) {
@@ -405,6 +422,7 @@ public class main {
             ID = input.nextInt();
             AccID = ID;
             switch (ID) {
+                //admin account
                 case 1:
                     System.out.println("enter your username");
                     String adminacc = input.next();
@@ -415,6 +433,7 @@ public class main {
                     else
                         System.out.println("error");
                     break;
+                 // normal account
                 case 2:
                     System.out.println("enter your ID");
                     int userID = input.nextInt();
@@ -432,6 +451,7 @@ public class main {
                         System.out.println("eroor");
 
                     break;
+                 // VIP account
                 case 3:
                     System.out.println("enter your ID");
                     int vpID = input.nextInt();
@@ -455,7 +475,7 @@ public class main {
 
         }
     }
-
+// admin panel
     public static void admin() {
         int ID = 0;
         while (ID != 99) {
@@ -507,7 +527,7 @@ public class main {
         }
 
     }
-
+// user panel
     public static void user() {
         int ID = 0;
         while (ID != 99) {
@@ -539,6 +559,7 @@ public class main {
 
         }
     }
+    // VIP user panel
     public static void vpuser() {
         int ID = 0;
         while (ID != 99) {
